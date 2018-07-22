@@ -1,4 +1,15 @@
-## Python workflow
+# Data Analysis with Python Workshop
+
+## Workshop structure
+
+1. Basic operations (addition, substraction ...)
+2. Data structures (lists, dicts ...)
+3. Control flow and loops (if else, for ...)
+4. Functions and packages
+5. Dataframe Basics and visualisations
+6. Next steps
+
+## Environment Setup
 
 First figure out which Python you have (python2 or 3), you can do it with:
 

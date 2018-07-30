@@ -3,7 +3,6 @@
 # Rick Scavetta and Boyan Angelov    #
 ######################################
 
-
 import math
 import pandas as pd
 import numpy as np
@@ -18,7 +17,6 @@ import seaborn as sns
 
 plant_growth = pd.read_csv('data/plant_growth.csv')
 plant_growth.head()
-
 
 plant_growth['group'].value_counts()
 
@@ -37,7 +35,6 @@ sns.boxplot(x='group', y='weight', data=plant_growth)
 
 from statsmodels.formula.api import ols
 
-
 model = ols("weight ~ group", plant_growth)
 results = model.fit()
 results.summary()
@@ -49,11 +46,11 @@ import statsmodels.api as sm
 aov_table = sm.stats.anova_lm(results, typ=2)
 aov_table
 
+# TODO add t-test
 
 #############
 # Functions #
 #############
-
 
 # generic name of functions
 # function(args)
@@ -88,6 +85,21 @@ len(name)
 # Objects #
 ###########
 
+# ## Types
+
+type(1)
+
+type(0.25)
+
+type("Berlin")
+
+type(True)
+
+# coercion
+str(1)
+
+type(str(1))
+
 # create a list
 xx = [3, 8, 9, 23]
 xx
@@ -104,13 +116,13 @@ foo2 = np.arange(1, n, p)
 foo2
 
 
-# Type of math functions:
-# 1 - transformation: Every value is transformed in the SAME way
-# +, -, *,
-# Normalisation, Z-scores
-# log, log10, log2, sqrt
-# Multiply every element by 3
+
 from scipy import stats
+
+#########
+# NUMPY #
+#########
+
 np.log(foo1)
 np.log10(foo1)
 np.sqrt(foo1)
@@ -128,21 +140,6 @@ foo1 * 3
 
 foo2 + foo2
 
-# ## Types
-
-type(1)
-
-type(0.25)
-
-type("Berlin")
-
-type(True)
-
-# coercion
-str(1)
-
-type(str(1))
-
 
 heights = [167, 188, 178, 194, 171, 169]
 type(heights)
@@ -156,7 +153,6 @@ type(heights_persons)
 heights_persons.values()
 heights_persons.keys()
 
-# ## Numpy
 heights + 2
 
 heights_np = np.array(heights)
@@ -164,15 +160,18 @@ heights_np
 
 heights_np + 2
 
-# ## Dataframes
+##########
+# PANDAS #
+##########
 
-# TODO numeric column fix
 
 foo2
 
 foo3 = np.array(["Liver", "Brain", "Testes", "Muscle", "Intestine", "Heart"])
 foo4 = np.array([True, False, False, True, True, False])
+# TODO add numeric column
 type(foo4)
+
 
 foo_df = pd.DataFrame([foo2, foo3, foo4]).T
 foo_df.columns = ['numeric_col', 'character_col', 'bool_col']
@@ -189,15 +188,8 @@ foo_df.tail()
 foo_df.sample()
 
 
-
-
-
-# # Dataframe Basics and Visualisation
-# TODO add protein.df
-
-# ## Get data
-
-
+protein_data = pd.read_csv('data/Protein.txt', delimiter='\t')
+protein_data.head()
 
 ######################################### DAY 2 #########################################
 
@@ -213,6 +205,8 @@ foo_df[(foo_df['character_col'] == "Heart") | (foo_df['character_col'] == "Liver
 
 foo_df['character_col'][0]
 
+
+# TODO replace those functions with pandas
 mtcars = pd.read_csv("data/mtcars.csv")
 
 

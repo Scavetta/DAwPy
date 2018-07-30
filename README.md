@@ -9,6 +9,16 @@
 5. Dataframe Basics and visualisations
 6. Next steps
 
+## Tips for using Jupyter notebooks in Jupyter lab
+
+* use arrows to navigate between cells, ENTER to enter
+* "a" creates a cell below
+* "b" creates a cell above
+* "x" cuts/delets cell
+* CTRL + ENTER runs cell
+* "m" convert cell to markdown
+* "y" convert cell to code
+
 ## Environment Setup
 
 First figure out which Python you have (python2 or 3), you can do it with:

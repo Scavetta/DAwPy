@@ -7,7 +7,10 @@ import math
 import pandas as pd
 import numpy as np
 import seaborn as sns
-
+from statsmodels.formula.api import ols
+import statsmodels.api as sm
+from scipy import stats
+from scipy.special import factorial
 
 ######################################### DAY 1 #########################################
 
@@ -15,35 +18,41 @@ import seaborn as sns
 # Plant growth case study #
 ###########################
 
+# load dataset
 plant_growth = pd.read_csv('data/plant_growth.csv')
+
+# explore first dataset rows
 plant_growth.head()
 
+# count group members
 plant_growth['group'].value_counts()
 
+# get average weight
 np.mean(plant_growth['weight'])
 
+# get summary statistics
 plant_growth.groupby(['group']).describe()
-
 plant_growth.groupby(['group']).mean()
 
+# visualize weight per group
 sns.stripplot(x='group', y='weight', data=plant_growth, jitter=0.2)
-
 sns.boxplot(x='group', y='weight', data=plant_growth)
 
-
-# ## Linear model
-
-from statsmodels.formula.api import ols
-
+# fit a linear model
+# specify model
 model = ols("weight ~ group", plant_growth)
+
+# fit model
 results = model.fit()
+
+# explore model results
 results.summary()
 
-
-# ## ANOVA
-
-import statsmodels.api as sm
+# ANOVA
+# compute anova
 aov_table = sm.stats.anova_lm(results, typ=2)
+
+# explore anova results
 aov_table
 
 # TODO add t-test
@@ -55,11 +64,13 @@ aov_table
 # generic name of functions
 # function(args)
 
+# example function
 math.log(8, 2)
 
+# task: build a function that sums a list
 heights = [167, 188, 178, 194, 171, 169]
 
-# function that returns number of tall people from a list
+# sum function
 def count_tall_people(heights_list):
     tall_people_number = 0
     for height in heights:
@@ -68,60 +79,57 @@ def count_tall_people(heights_list):
 
     return tall_people_number
 
-
+# use function
 count_tall_people(heights)
 
-# bult in functions
+# several bult-in functions
 sum(heights)
 len(heights)
-
 name = "Berlin"
 name.lower()
 name.upper()
 len(name)
 
-
 ###########
 # Objects #
 ###########
 
-# ## Types
+# types
 
-type(1)
+a = 1
+type(a)
 
-type(0.25)
+b = 0.25
+type(b)
 
-type("Berlin")
+c = "Berlin"
+type(c)
 
-type(True)
+d = True
+type(d)
 
 # coercion
-str(1)
+str(a)
+type(str(a))
 
-type(str(1))
-
-# create a list
+# lists
 xx = [3, 8, 9, 23]
-xx
-myNames = ["healthy", "tissue", "quantity"]
+print(xx)
 
+myNames = ["healthy", "tissue", "quantity"]
 myNames
+
+#########
+# NUMPY #
+#########
 
 # sequential numbers
 foo1 = np.arange(1, 100, 7)
 foo1
 
 # use objects in functions
-foo2 = np.arange(1, n, p)
+foo2 = np.arange(1, 100, 5)
 foo2
-
-
-
-from scipy import stats
-
-#########
-# NUMPY #
-#########
 
 np.log(foo1)
 np.log10(foo1)
@@ -130,16 +138,12 @@ stats.zscore(foo1)
 foo1 * 3
 
 sum(foo1)
-from scipy.special import factorial
 factorial(6)
 len(foo1)
 
 foo1 + 100
-
 foo1 * 3
-
 foo2 + foo2
-
 
 heights = [167, 188, 178, 194, 171, 169]
 type(heights)
@@ -196,7 +200,7 @@ protein_data.head()
 # protein df exercises
 # pandas rearrange data
 
-
+# Construct your own dataframe
 foo_df['numeric_col'] == 7
 
 foo_df[foo_df['numeric_col'] > 20]
@@ -205,38 +209,31 @@ foo_df[(foo_df['character_col'] == "Heart") | (foo_df['character_col'] == "Liver
 
 foo_df['character_col'][0]
 
-
-# TODO replace those functions with pandas
-mtcars = pd.read_csv("data/mtcars.csv")
-
-
 # ## Initial views
 
-mtcars.head()
-mtcars.tail()
+protein_data.head()
+protein_data.tail()
 
 # ## Summary statistics
 
-mtcars.describe()
+protein_data.describe()
 
 # ## Subsetting
 
 # select columns
-mtcars['mpg']
-# or
-mtcars.mpg
+protein_data['Sequence.Length']
 
-type(mtcars['mpg'])
+type(protein_data['Sequence.Length'])
 
 
 # select several columns
-mtcars[['mpg', 'cyl']]
-
+protein_data[['Peptides', 'MW.kDa']]
 
 # command chaining
-mtcars[['mpg', 'cyl']].sample(10).head(3)
+protein_data[['Peptides', 'MW.kDa']].sample(10).head(3)
 
-mtcars['gear'].value_counts()
+# frequency table
+protein_data['Peptides'].value_counts()
 
 
 ##################

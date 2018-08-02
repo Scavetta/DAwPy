@@ -31,8 +31,12 @@ plant_growth['group'].value_counts()
 np.mean(plant_growth['weight'])
 
 # get summary statistics
+# NOTE quite complicated to get the exact same output in R, have to create a custom function because of the index
 plant_growth.groupby(['group']).describe()
-plant_growth.groupby(['group']).mean()
+df1 = plant_growth.groupby(['group']).mean()
+df2 = plant_growth.groupby(['group']).std()
+final_df = pd.concat([df1, df2], axis=1)
+
 
 # visualize weight per group
 sns.stripplot(x='group', y='weight', data=plant_growth, jitter=0.2)
@@ -47,6 +51,12 @@ results = model.fit()
 
 # explore model results
 results.summary()
+
+# extract coefficients
+results.params.Intercept
+results.params["group[T.trt1]"]
+results.params["group[T.trt1]"]
+results.params["group[T.trt2]"]
 
 # ANOVA
 # compute anova

@@ -55,7 +55,10 @@ aov_table = sm.stats.anova_lm(results, typ=2)
 # explore anova results
 aov_table
 
-# TODO add t-test
+# t-test
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+print(pairwise_tukeyhsd(plant_growth['weight'], plant_growth['group']))
+
 
 #############
 # Functions #

@@ -10,14 +10,14 @@ library(tidyverse)
 library(Hmisc)
 
 # Exercise 2: Read in the data
-read.delim("Expression.txt") %>% 
-  as_tibble() %>% 
+read.delim("data/Expression.txt") %>%
+  as_tibble() %>%
   gather(key, value) -> medi.t
 
 medi.t %>% 
-  separate(key, c("treatment", "gene", "time"), "_") %>% 
-  filter(!is.na(value)) %>% 
-  group_by(gene, treatment, time) %>% 
+  separate(key, c("treatment", "gene", "time"), "_") %>%
+  filter(!is.na(value)) %>%
+  group_by(gene, treatment, time) %>%
   summarise(avg = mean(value),
             stdev = sd(value),
             n = n(),
@@ -34,15 +34,15 @@ medi.t %>%
 # Do a single ANCOVA: use + or * for interaction
 # use the broom package to clean up the results
 library(broom)
-medi.t %>% 
-  separate(key, c("treatment", "gene", "time"), "_") %>% 
-  filter(gene == "RIPK2") %>% 
+medi.t %>%
+  separate(key, c("treatment", "gene", "time"), "_") %>%
+  filter(gene == "RIPK2") %>%
   do(tidy(anova(lm(value ~ treatment + time, data = .))))
 
 # so... generalise to all genes: replace filter with group_by
-medi.t %>% 
-  separate(key, c("treatment", "gene", "time"), "_") %>% 
-  group_by(gene) %>% 
+medi.t %>%
+  separate(key, c("treatment", "gene", "time"), "_") %>%
+  group_by(gene) %>%
   do(tidy(anova(lm(value ~ treatment + time, data = .))))
 
 
@@ -53,8 +53,8 @@ smean.cl.normal(1:100)[2] # lower limit
 smean.cl.normal(1:100)[3] # upper limit
 
 # make a plot:
-medi.t %>% 
-  separate(key, c("treatment", "gene", "time"), "_") %>% 
+medi.t %>%
+  separate(key, c("treatment", "gene", "time"), "_") %>%
   ggplot(aes(time, value, col = treatment)) +
   geom_point(position = position_jitterdodge(0.2, dodge.width = 0.3)) +
   facet_grid(. ~ gene)

@@ -1,0 +1,3 @@
+[
+["index.html", "Data Analysis with Python Reference Book Chapter 1 Introductions 1.1 Set up your software:", " Data Analysis with Python Reference Book Boyan Angelov and Rick Scavetta 2018-08-17 Chapter 1 Introductions 1.1 Set up your software: Before running the commands in this book you should have the following software locally installed: Python from Anaconda Start the Anaconda Navigator and open up Jupyter Lab .column-left{ float: left; width: 48%; text-align: left; } .column-right{ float: right; width: 48%; text-align: right; } .column-full{ float: left; width: 100%; text-align: left; } "]
+]

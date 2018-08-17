@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Data Analysis with Python Reference Book</title>
+  <meta name="description" content="This is the reference book to accompany the Data Analysis with Python Workshop.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Data Analysis with Python Reference Book" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the reference book to accompany the Data Analysis with Python Workshop." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Data Analysis with Python Reference Book" />
+  
+  <meta name="twitter:description" content="This is the reference book to accompany the Data Analysis with Python Workshop." />
+  
+
+<meta name="author" content="Boyan Angelov and Rick Scavetta">
+
+
+<meta name="date" content="2018-08-17">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="differences-in-handling-types.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Analysis with Python Reference Book</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introductions</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#set-up-your-software"><i class="fa fa-check"></i><b>1.1</b> Set up your software:</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> ch 1: Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#basic-syntax"><i class="fa fa-check"></i><b>2.1</b> Basic Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>3</b> 1.1 Data Types</a></li>
+<li class="chapter" data-level="4" data-path="differences-in-handling-types.html"><a href="differences-in-handling-types.html"><i class="fa fa-check"></i><b>4</b> Differences in handling types</a></li>
+<li class="chapter" data-level="5" data-path="containers-list-and-dictionaries.html"><a href="containers-list-and-dictionaries.html"><i class="fa fa-check"></i><b>5</b> 1.2 Containers - List and Dictionaries</a><ul>
+<li class="chapter" data-level="5.1" data-path="containers-list-and-dictionaries.html"><a href="containers-list-and-dictionaries.html#lists"><i class="fa fa-check"></i><b>5.1</b> Lists</a></li>
+<li class="chapter" data-level="5.2" data-path="containers-list-and-dictionaries.html"><a href="containers-list-and-dictionaries.html#indexing"><i class="fa fa-check"></i><b>5.2</b> Indexing</a></li>
+<li class="chapter" data-level="5.3" data-path="containers-list-and-dictionaries.html"><a href="containers-list-and-dictionaries.html#dictionaries"><i class="fa fa-check"></i><b>5.3</b> Dictionaries</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions-methods-and-libraries.html"><a href="functions-methods-and-libraries.html"><i class="fa fa-check"></i><b>6</b> 1.3 Functions, Methods, and Libraries</a><ul>
+<li class="chapter" data-level="6.1" data-path="functions-methods-and-libraries.html"><a href="functions-methods-and-libraries.html#methods-vs-functions"><i class="fa fa-check"></i><b>6.1</b> Methods vs Functions</a></li>
+<li class="chapter" data-level="6.2" data-path="functions-methods-and-libraries.html"><a href="functions-methods-and-libraries.html#periods"><i class="fa fa-check"></i><b>6.2</b> periods</a></li>
+<li class="chapter" data-level="6.3" data-path="functions-methods-and-libraries.html"><a href="functions-methods-and-libraries.html#libraries"><i class="fa fa-check"></i><b>6.3</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="extra.html"><a href="extra.html"><i class="fa fa-check"></i><b>7</b> Extra</a></li>
+<li class="chapter" data-level="8" data-path="ch-2.html"><a href="ch-2.html"><i class="fa fa-check"></i><b>8</b> ch 2</a><ul>
+<li class="chapter" data-level="8.1" data-path="ch-2.html"><a href="ch-2.html#if-statements-and-loops"><i class="fa fa-check"></i><b>8.1</b> 2.1 If statements and Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>9</b> 2.2 Functions</a><ul>
+<li class="chapter" data-level="9.1" data-path="functions.html"><a href="functions.html#writing-your-own-functions"><i class="fa fa-check"></i><b>9.1</b> 2.2.1 Writing your own functions:</a></li>
+<li class="chapter" data-level="9.2" data-path="functions.html"><a href="functions.html#functions-can-call-other-functions"><i class="fa fa-check"></i><b>9.2</b> 2.2.2 Functions can call other functions:</a></li>
+<li class="chapter" data-level="9.3" data-path="functions.html"><a href="functions.html#anonymous-and-lambda-functions"><i class="fa fa-check"></i><b>9.3</b> 2.2.3 Anonymous and lambda functions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="comprehensions.html"><a href="comprehensions.html"><i class="fa fa-check"></i><b>10</b> 2.3 Comprehensions</a><ul>
+<li class="chapter" data-level="10.1" data-path="comprehensions.html"><a href="comprehensions.html#list-comprehensions"><i class="fa fa-check"></i><b>10.1</b> 2.3.1 List comprehensions</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="ch-3.html"><a href="ch-3.html"><i class="fa fa-check"></i><b>11</b> Ch 3</a></li>
+<li class="chapter" data-level="12" data-path="selecting-data-in-pandas.html"><a href="selecting-data-in-pandas.html"><i class="fa fa-check"></i><b>12</b> 3.1 Selecting Data in Pandas</a></li>
+<li class="chapter" data-level="13" data-path="data-frames-2d.html"><a href="data-frames-2d.html"><i class="fa fa-check"></i><b>13</b> 3.1.1 Data frames - 2D</a></li>
+<li class="chapter" data-level="14" data-path="attributes.html"><a href="attributes.html"><i class="fa fa-check"></i><b>14</b> 3.1.2 Attributes</a></li>
+<li class="chapter" data-level="15" data-path="data-types-1.html"><a href="data-types-1.html"><i class="fa fa-check"></i><b>15</b> 3.2.1 Data Types</a></li>
+<li class="chapter" data-level="16" data-path="change-data-types.html"><a href="change-data-types.html"><i class="fa fa-check"></i><b>16</b> 3.2.2 Change data types:</a></li>
+<li class="chapter" data-level="17" data-path="accessors.html"><a href="accessors.html"><i class="fa fa-check"></i><b>17</b> 3.2.3 Accessors</a></li>
+<li class="chapter" data-level="18" data-path="string-accessor.html"><a href="string-accessor.html"><i class="fa fa-check"></i><b>18</b> 3.2.3.1 String Accessor</a></li>
+<li class="chapter" data-level="19" data-path="categorical-accessor.html"><a href="categorical-accessor.html"><i class="fa fa-check"></i><b>19</b> 3.2.3.1 Categorical Accessor</a></li>
+<li class="chapter" data-level="20" data-path="date-accessor.html"><a href="date-accessor.html"><i class="fa fa-check"></i><b>20</b> 3.2.3.3 Date Accessor</a></li>
+<li class="chapter" data-level="21" data-path="advanced-pandas.html"><a href="advanced-pandas.html"><i class="fa fa-check"></i><b>21</b> 3.3 Advanced Pandas</a></li>
+<li class="chapter" data-level="22" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>22</b> 3.3.1 Missing data</a></li>
+<li class="chapter" data-level="23" data-path="applying-custom-functions.html"><a href="applying-custom-functions.html"><i class="fa fa-check"></i><b>23</b> 3.3.2 Applying custom functions</a></li>
+<li class="chapter" data-level="24" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>24</b> 3.3.4 Tidy data</a></li>
+<li class="chapter" data-level="25" data-path="groupby-operations.html"><a href="groupby-operations.html"><i class="fa fa-check"></i><b>25</b> 3.3.5 groupby operations</a></li>
+<li class="chapter" data-level="26" data-path="ch-4.html"><a href="ch-4.html"><i class="fa fa-check"></i><b>26</b> ch 4</a></li>
+<li class="chapter" data-level="27" data-path="data-visualization-with-pandas.html"><a href="data-visualization-with-pandas.html"><i class="fa fa-check"></i><b>27</b> 4.1 Data Visualization with Pandas</a></li>
+<li class="chapter" data-level="28" data-path="plot-methods.html"><a href="plot-methods.html"><i class="fa fa-check"></i><b>28</b> 4.1.1 Plot Methods</a></li>
+<li class="chapter" data-level="29" data-path="data-visualization-with-seaborn.html"><a href="data-visualization-with-seaborn.html"><i class="fa fa-check"></i><b>29</b> 4.2 Data Visualization with Seaborn</a></li>
+<li class="chapter" data-level="30" data-path="data-visualization-with-matplotlib.html"><a href="data-visualization-with-matplotlib.html"><i class="fa fa-check"></i><b>30</b> 4.3 Data Visualization with Matplotlib</a><ul>
+<li class="chapter" data-level="30.1" data-path="data-visualization-with-matplotlib.html"><a href="data-visualization-with-matplotlib.html#libraries-1"><i class="fa fa-check"></i><b>30.1</b> Libraries</a><ul>
+<li class="chapter" data-level="30.1.1" data-path="data-visualization-with-matplotlib.html"><a href="data-visualization-with-matplotlib.html#numpy"><i class="fa fa-check"></i><b>30.1.1</b> Numpy</a></li>
+<li class="chapter" data-level="30.1.2" data-path="data-visualization-with-matplotlib.html"><a href="data-visualization-with-matplotlib.html#scipy"><i class="fa fa-check"></i><b>30.1.2</b> SciPy</a></li>
+<li class="chapter" data-level="30.1.3" data-path="data-visualization-with-matplotlib.html"><a href="data-visualization-with-matplotlib.html#pandas"><i class="fa fa-check"></i><b>30.1.3</b> Pandas</a></li>
+<li class="chapter" data-level="30.1.4" data-path="data-visualization-with-matplotlib.html"><a href="data-visualization-with-matplotlib.html#scikit-learn"><i class="fa fa-check"></i><b>30.1.4</b> Scikit-learn</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="ch-5-virtualenv.html"><a href="ch-5-virtualenv.html"><i class="fa fa-check"></i><b>31</b> Ch 5: virtualenv</a></li>
+<li class="chapter" data-level="32" data-path="setting-up-your-virtual-env.html"><a href="setting-up-your-virtual-env.html"><i class="fa fa-check"></i><b>32</b> Setting up your virtual env</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.scavetta.academy" target="blank">Web-site</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis with Python Reference Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-types" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> 1.1 Data Types</h1>
+<ul>
+<li>int</li>
+<li>float</li>
+<li>bool: True and False</li>
+<li>str</li>
+</ul>
+<p>only use <code>=</code> for adding</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1">x <span class="op">=</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">y <span class="op">=</span> <span class="fl">0.5</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">z <span class="op">=</span> <span class="va">True</span></a></code></pre></div>
+<p>Types and classes</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="bu">print</span>(<span class="bu">type</span>(x))</a></code></pre></div>
+<pre><code>## &lt;class &#39;int&#39;&gt;</code></pre>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="differences-in-handling-types.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Python Documentation.pdf", "Python Documentation.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

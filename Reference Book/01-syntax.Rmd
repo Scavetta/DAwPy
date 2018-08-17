@@ -1,0 +1,205 @@
+# ch 1: Basic Syntax and Types {#intro}
+
+## 1.1 Data Types
+
+- int
+- float
+- bool: True and False
+- str
+
+only use `=` for adding
+
+```{python}
+x = 3
+y = 0.5
+z = True
+```
+
+Types and classes
+
+```{python}
+print(type(x))
+```
+
+# Differences in handling types
+
+```{python}
+print(1 + 1)
+
+print('1' + '1')
+
+print('1' * 5)
+
+print('1' '1')
+```
+
+
+## 1.2 Containers - List and Dictionaries
+
+### Lists
+
+Holds heterogeneous information (e.g., [3, 2.718, True, 'hello'])
+
+```{python}
+l = [1, '2', True]
+print(l)
+print(l[0]) # First value, use 0
+print(l[-1]) # negative values, begin at end
+
+
+l = [0, 1, 2, 3, 4]
+
+print(l[0:3]) # first to third
+
+print(l[0:5:2]) # step2
+
+
+# Implicit
+
+print(l[:3]) # first to third
+print(l[1:]) # second to end
+print(l[::2]) # all, every second
+# Explicit
+print(l[0:3]) # 
+print(l[1:5]) # 
+print(l[0:5:2])
+```
+
+### Indexing
+
+- Begins at zero
+- Negative values go in reverse
+- Left inclusive, right exclusive
+- Third value in index specifies step size
+- Can be implicit or explicit
+
+### Dictionaries 
+
+Lists are unlabelledm, but dictionaries provide key:value pairs using `{}` and `:`.
+
+```{python}
+d = {'int_value':3, 
+     'bool_value':False, 
+     'str_value':'hello'}
+
+print(d) # 
+print(d['str_value'])
+```
+
+Notice that the order when printing is different than in definition. Order is not guaranteed! So don't rely on the printed order of the keys.
+
+place key in the `[]` to extract that value.
+
+```{python}
+l = [0, 1, 2, 3, 4]
+d = {'int_value':3, 'bool_value':False, 'str_value':'hello'}
+
+print(len(l)) # 
+print(len(d))
+```
+
+## 1.3 Functions, Methods, and Libraries
+
+- Calling Functions
+- R and Python functions work the same
+- Python: Functions and Methods
+
+### Methods vs Functions
+
+- python is an object-oriented programming language:
+  - Attributes
+  - Methods
+- Methods are functions that an object can call on itself
+- Functions are called on an object
+
+```{python}
+l = [0, 1, 2, 3, 4]
+len(l)   # call a function
+```
+
+But not this:
+
+```
+l.len()  # not a method
+```
+e.g. methods are functions that an object calls, whereas you pass objects into functions.
+
+i.e. we pass `l` a list to the function `len()`, rather than calling the method `len()` on `l` using the `.`
+
+### periods
+
+Periods, `.`, have very specific meanings and uses
+
+You can't use a `.` in a variable or function name.
+
+Uses:
+
+Append a list: Call the append method on the list `l` using the dot notation. So your not passing `l` to the `append()` function, rather you're calling the `append()` method on list `l`.
+
+```{python}
+l = [1, "2", True]
+l.append('appended value')
+print(l)
+```
+
+Update a dictionary:
+
+```{python}
+d = {'int_value':3, 'bool_value':False, 'str_value':'hello'}
+
+d.update({'str_value':'new_value', 'new_key':'new_value'})
+
+print(d)
+```
+
+Methods are special functions that belong to specific objects. e.g. if you try calling append on a dictionary object, you'll get an error because the method append is not defined for a dictionary but it is defined for a list. 
+
+### Libraries
+
+Arrays and data frame are not in Python by default. They come from numby (array and matrix) and pandas (dataframe)
+
+- Libraries provide more functionality
+- Arrays and dataframes are not built into Python
+- Arrays and matricies come from numpy
+- Dataframes come from pandas
+
+use import to load the library, but use an alias with the as _keyword_.
+
+```{python eval = TRUE}
+import numpy
+# arr = numpy.loadtxt('my_file.csv', delimiter=',')
+
+import numpy as np
+# arr = np.loadtxt('my_file.csv', delimiter=',')
+```
+
+```{python eval = TRUE}
+import pandas as pd
+
+# df = pd.read_csv('my_file.csv')
+# df.head()
+```
+
+## Extra
+
+Find out where your packages are. In python execute:
+
+```{python eval = TRUE}
+import pandas
+import os
+path = os.path.dirname(pandas.__file__)
+print(path)
+```
+
+
+```{python}
+import sys
+print(sys.version)
+print(sys.executable)
+```
+
+```{r}
+print(system("which python"))
+```
+
+

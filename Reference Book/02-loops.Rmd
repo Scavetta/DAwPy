@@ -1,0 +1,200 @@
+# ch 2
+
+## 2.1 If statements and Loops
+
+_Whitespace and indentation is a fundamental part of writing python code and is not optional_.
+
+i.e. you define code blocks with indentations. Use 4 spaces to indent code
+
+
+```{python}
+if 5 == 5:
+    print('True')
+    
+```
+
+Everything in the indented code is executed in python. That's like `{}` in R
+
+`elif` and `else`:
+
+```{python}
+val = 2
+
+if val == 1:
+    print('snap')
+elif val == 2:
+    print('crackle')
+else:
+    print('pop')
+```
+
+for loops:
+
+```{python}
+num_val = [1, 2, 3, 4]
+
+for value in num_val:
+    print(value)
+```
+
+
+## 2.2 Functions
+
+### 2.2.1 Writing your own functions:
+
+use the `def` keyword in Python. The body of the function is indented. The `return` statement is necessary! The last line is not automatically returned.
+
+```{python}
+def my_mean(x, y):
+    num = x + y
+    dem = 2
+    return num / dem
+
+print(my_mean(10, 20))
+```
+
+### 2.2.2 Functions can call other functions:
+
+
+```{python}
+def my_sq(x):
+    return x ** 2
+    
+def my_sq_mean(y, z):
+    return (my_sq(y) + my_sq(z)) / 2
+    
+print(my_sq_mean(10, 12))
+```
+
+### 2.2.3 Anonymous and lambda functions
+
+In Python, use the `lambda` keyword to make a lambda functions with the apply method (see later):
+
+```{python}
+def add_1(x):
+    return x + 1
+    
+a1_lam = lambda x: x + 1
+print(a1_lam(3))
+```
+
+You can also save a lambda funcion.
+
+## 2.3 Comprehensions
+
+One of the most common tasks you'll perform when cleaning or summarising data is to iterate over a list, apply some function or perform some calculation on each element and then return the result as a new list. 
+
+### 2.3.1 List comprehensions
+
+Comprehensions are loops:
+
+- Iterate (loop) through a list
+- Perform some function
+- Append results into a new list
+
+Open a `[]` and write the body of your `for loop` first then write the for statement to iterate over data. No `:` at the end!
+
+<div class="column-left">
+
+`for loop`:
+
+```{python}
+data = [1, 2, 3, 4, 5]
+new = []
+
+for x in data:
+    new.append(x**2)
+
+print(new)
+
+```
+
+</div>
+<div class="column-right">
+
+Comprehension:
+
+```{python}
+data = [1, 2, 3, 4, 5]
+
+new = [x**2 for x in data]
+
+print(new)
+
+```
+
+</div>
+<div class="column-full">
+
+### 2.3.3 Dictionary comprehensions
+
+Result is a dictionary, so you need to create a key:value pair. Use `{}` here 
+
+</div>
+<div class="column-left">
+
+`for loop`:
+
+```{python}
+data = [1, 2, 3, 4, 5]
+new = {}
+
+for x in data:
+    new[x] = x**2
+
+print(new)
+```
+
+</div>
+<div class="column-right">
+
+Comprehension:
+
+```{python}
+data = [1, 2, 3, 4, 5]
+
+new = {x: x**2 for x in data}
+
+print(new)
+```
+
+</div>
+<div class="column-full">
+
+### 2.3.4 Alternatives to for loops
+
+- `for loop` to iterate
+- R: sapply, lapply, apply functions
+- Python: map function (here) and apply method
+
+`map()` takes the name of the function as the first argument and a list of values as the second. The specified funtion is applied to all the elements in the second argument, one at a time, like `sapply()` and `lapply()` in R. The result is a `map` object, so you need to convert it to a `list` to view it. 
+
+</div>
+<div class="column-left">
+
+`for loop`:
+
+```{python}
+def sq(x):
+    return x**2
+
+l = [1, 2, 3]
+
+for i in l:
+    print(sq(i))
+    
+```
+
+
+</div>
+<div class="column-right">
+
+`map()`
+
+```{python}
+map(sq, l)
+
+print(list(map(sq, l)))
+```
+
+</div>

@@ -1,0 +1,399 @@
+# Session 2: The Fundamentals {-}
+
+Learning Objectives: 
+
+- Learn and use basic functions, methods and libraries
+- Explore the most common data containers
+
+## Functions & Methods
+
+- Python is an _object-oriented_ programming language. This means that objects have:
+  - Attributes, and
+  - Methods
+- Methods are functions that an object can call on itself
+- Functions are called on an object
+
+Let's begin with functions
+
+### Generic function convention
+
+Functions have a generic form of:
+
+```
+function(args)
+```
+
+We already saw a lot of this, for example:
+
+```{python}
+np.log2(8)
+```
+
+This actually uses `NumPy`, but we'll talk about that in detail later. Typically, there is more than one way to call a funciton, for example:
+
+```{python}
+math.log(8, 2)
+```
+
+would produce the same result.
+
+Let's make a small data set to play with. We'll consider different data containers in detail in the next section.
+
+```{python}
+heights = [167, 188, 178, 194, 171, 169]
+```
+
+There are various things we can calculate on these values:
+
+```{python}
+sum(heights)
+len(heights)
+```
+
+Table: (\#tab:nice-fun) Some common functions.
+
+| Function     | Description              |
+|--------------|--------------------------|
+| len()        | The number of values, n  |
+| np.mean()    | The mean                 |
+| stats.mode() | The mode                 |
+| np.median()  | The median               |
+| np.var()     | The variance             |
+| np.std()     | The standard deviation   |
+| stats.iqr()  | The inter-quartile range |
+| max()        | The maximum value        |
+| min()        | The minimum value        |
+| range()      | The range                |
+
+And we have methods that we call with a `.` notation. In this case, this does _not_ work:
+
+```
+l.len()  # not a method
+```
+
+e.g. methods are functions that an object calls, whereas you pass objects into functions.
+
+i.e. we pass `l` a list to the function `len()`, rather than calling the method `len()` on `l` using the `.`
+
+### periods
+
+Periods, `.`, have very specific meanings and use. They call methods taht are available. If you want to see the methods available to an object, you can just type `.` in jupyter lab and then `tab` to auto complete and see a list.
+
+For functions, you can get the help page by typing `shift` + `tab` inside the `()` of a function.
+
+You can't use a `.` in a variable or function name.
+
+Let's take a look at an example. Append a list: Call the append method on the list `l` using the dot notation. So your not passing `l` to the `append()` function, rather you're calling the `append()` method on list `l`.
+
+```{python}
+l = [1, "2", True]
+l.append('appended value')
+print(l)
+```
+
+Methods are special functions that belong to specific objects. e.g. if you try calling append on a dictionary object, you'll get an error because the method append is not defined for a dictionary but it is defined for a list. 
+
+
+### Exercises
+
+```{exercise}
+
+Explore various methods for the object `l` and describe what they do. We'll take them up together as a class.
+
+```
+
+
+## Containers - List and Dictionaries
+
+### Homogenous Lists
+
+Let's take a look at the different types:
+
+```{python}
+# Types
+a = 1
+type(a)
+```
+
+```{python}
+b = 0.25
+type(b)
+```
+
+```{python}
+c = "Berlin"
+type(c)
+```
+
+```{python}
+d = True
+type(d)
+```
+
+There are four data types in Python:
+
+| Type    | Name            | Example                                 |
+|---------|-----------------|-----------------------------------------|
+| `int`   | Integer numbers | 7,9,2,-4                                |
+| `float` | Real numbers    | 3.14, 2.78, 6.45                        |
+| `bool`  | Binary          | `True` and `False`                      |
+| `str`   | String          | All Alphanumeric and special characters |
+
+As we've already seen, just use the assignment operator, `=`, for storing a value in a variable.
+
+```{exercise name="Differences in handling types"}
+
+What do expect when executing the following functions?
+
+`1 + 1`
+
+`'1' + '1'`
+
+`'1' * 5`
+
+`'1' '1'`
+
+```
+
+```{exercise name = "Mixing different lengths"}
+
+So far, so good! But what would happen in these cases?
+
+`[1, 6, 9, 36] + 100`
+
+`[1, 6, 9, 36] + [10, 100]`
+
+`[1, 6, 9, 36] + [100, 200, 300, 400]`
+
+`[1, 6, 9, 36] + [100, "dogs", 300, 400]`
+
+```
+
+```{python echo = FALSE, eval = FALSE}
+print(1 + 1)
+
+print('1' + '1')
+
+print('1' * 5)
+
+print('1' '1')
+```
+
+
+Returning to methods, we have specific methods for strings:
+
+```{python}
+name = "Berlin"
+name.lower()
+name.upper()
+```
+
+And similar functions:
+
+```{python}
+len(name)
+```
+
+One of the most fundamental things in any language is know what type of data you are working with. If you have they wrong type, zou can't calculate the things that you want to, so you'll need to _corece_ into a different type, for example `str()` is used to create a _string_.
+
+
+```{python}
+# coercion
+str(a)
+type(str(a))
+```
+
+
+### Heterogenous Lists
+
+Holds heterogeneous information (e.g., [3, 2.718, True, 'hello'])
+
+```{python}
+l = [1, '2', True]
+print(l)
+```
+
+In Python we can have a _list of lists_ which we would say has two dimensions, but that is beyone the scope of this introduction.
+
+### Dictionaries 
+
+Lists are, for the most part, 1-dimensional. Dictionaries are 2-dimensional & heterogenous, like many data sources you'll enconter.
+
+Lists are unlabelled, but dictionaries provide `key:value` pairs using `{}` and `:`.
+
+```{python}
+d = {'int_value':3, 
+     'bool_value':False, 
+     'str_value':'hello'}
+
+print(d) # 
+print(d['str_value'])
+```
+
+or course we can put two lists together to create a dictionary. We do this using `dict(zip())`.
+
+```{python}
+heights = [167, 188, 178, 194, 171, 169]
+persons = ["Mary", "John", "Kevin", "Elena", "Doug", "Galin"]
+
+heights_persons = dict(zip(persons, heights))
+```
+
+There are specific methods to use here also:
+
+```{python}
+heights_persons.values()
+heights_persons.keys()
+
+```
+
+Notice that the order when printing is different than in definition. Order is not guaranteed! So don't rely on the printed order of the keys.
+
+```{python}
+l = [0, 1, 2, 3, 4]
+d = {'int_value':3, 'bool_value':False, 'str_value':'hello'}
+
+print(len(l)) # 
+print(len(d))
+```
+
+### Libraries
+
+Lists and dictionaries are fine, but we want a bit more elegant soltuions. That's where arrays, matrices and data frames come into play.
+
+Arrays and data frames are not in Python by default. They come from numby (array and matrix) and pandas (dataframe). Recall, that libraries just provide more functionality to Python.
+
+We use `import` to load the library. If we just use that, we get the _entire_ library.
+
+```{python eval = TRUE}
+import math
+```
+
+What actually happened is this:
+
+```{python}
+from math import *
+```
+
+So that we used the `*` as a wildcard. We can of course replace this with just a more specific part of the package, like so: 
+
+```{python}
+
+from scipy.special import factorial
+```
+
+So in this case we're just importing a small part of the whole `scipy.special` library. We do this when there are potential conflicts or when it's large.
+
+You also see that we can also give a package an _alias_ that will save us typing later on. These are pretty much standard use for some packages and you shouldn't change them! To do this use the `as` _keyword_ as such:
+
+```{python eval = TRUE}
+import numpy as np
+import pandas as pd
+```
+
+### NumPy arrays
+
+```{python}
+# lists
+xx = [3, 8, 9, 23]
+print(xx)
+
+
+# but what yo ureally want is an np array
+xx = np.array([3, 8, 9, 23])
+xx
+```
+
+The primary reason we use NumPy arrays is to _vectorize_ functions over all values. Let's take a look at other common functions from NumPy that do this really well in table \@ref(tab:nice-fun).
+
+```{python eval = FALSE, echo = FALSE}
+n = 34
+p = 6
+
+# sequential numbers
+foo1 = np.arange(1, 100, 7)
+foo1
+
+# use objects in functions
+foo2 = np.arange(1, n, p)
+foo2
+
+np.log(foo1)
+
+np.log10(foo1)
+
+np.log2(8)
+
+np.sqrt(foo1)
+
+stats.zscore(foo1)
+
+foo1 * 3
+
+sum(foo1)
+
+factorial(6)
+
+len(foo1)
+
+foo1 + 100
+
+foo1 * 3
+
+foo2 + foo2
+
+
+
+heights = [167, 188, 178, 194, 171, 169]
+type(heights)
+heights[0]
+heights[0:2]
+heights[-1]
+
+heights_persons = {"Mary": 176, "John" : 169, "Jeremy": 194, "Elena": 170}
+
+type(heights_persons)
+
+
+type(heights)
+
+heights_np = np.array(heights)
+heights_np
+heights_np + 2
+
+```
+
+## Exercises
+
+```{exercise}
+Given the `distances_from_berlin` list:
+
+`distances_from_berlin = [584, 1054, 653, 2301, 2191]
+# Munich, Paris, Amsterdam, Madrid, Istanbul
+
+Answer the following questions:
+
+- how many data points are there?
+- What is the longest and shortest distance?
+- Get the average distance
+
+```
+
+```{exercise}
+Modify the `distances_meters` list in the following ways:
+ 
+- Remove the third distance
+- Get the last distance in two ways (e.g. by looking at the data or by using proper positions)
+- Get the second, third and fourth distances
+- Get the distances in feet
+
+```
+
+
+```{exercise}
+Using the `distances_meters` list:
+
+- Visualize the distances as a univariate strip plot or a histogram.
+```
+
+

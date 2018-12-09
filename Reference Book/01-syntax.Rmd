@@ -1,205 +1,163 @@
-# ch 1: Basic Syntax and Types {#intro}
+# Session 1: Plant Growth Case Study {-}
 
-## 1.1 Data Types
+Learning Objectives: 
 
-- int
-- float
-- bool: True and False
-- str
+- Setting up Python
+- Import data
+- Performing descriptive and inferential statistics
+- Plotting functions
 
-only use `=` for adding
+## Set up your environment
 
-```{python}
-x = 3
-y = 0.5
-z = True
+```{r echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+Sys.setenv(PATH = paste("/anaconda3/bin", Sys.getenv("PATH"), sep=":"))
 ```
 
-Types and classes
+```{python echo = FALSE}
 
-```{python}
-print(type(x))
-```
+# import an entire library
+import math
 
-# Differences in handling types
-
-```{python}
-print(1 + 1)
-
-print('1' + '1')
-
-print('1' * 5)
-
-print('1' '1')
-```
-
-
-## 1.2 Containers - List and Dictionaries
-
-### Lists
-
-Holds heterogeneous information (e.g., [3, 2.718, True, 'hello'])
-
-```{python}
-l = [1, '2', True]
-print(l)
-print(l[0]) # First value, use 0
-print(l[-1]) # negative values, begin at end
-
-
-l = [0, 1, 2, 3, 4]
-
-print(l[0:3]) # first to third
-
-print(l[0:5:2]) # step2
-
-
-# Implicit
-
-print(l[:3]) # first to third
-print(l[1:]) # second to end
-print(l[::2]) # all, every second
-# Explicit
-print(l[0:3]) # 
-print(l[1:5]) # 
-print(l[0:5:2])
-```
-
-### Indexing
-
-- Begins at zero
-- Negative values go in reverse
-- Left inclusive, right exclusive
-- Third value in index specifies step size
-- Can be implicit or explicit
-
-### Dictionaries 
-
-Lists are unlabelledm, but dictionaries provide key:value pairs using `{}` and `:`.
-
-```{python}
-d = {'int_value':3, 
-     'bool_value':False, 
-     'str_value':'hello'}
-
-print(d) # 
-print(d['str_value'])
-```
-
-Notice that the order when printing is different than in definition. Order is not guaranteed! So don't rely on the printed order of the keys.
-
-place key in the `[]` to extract that value.
-
-```{python}
-l = [0, 1, 2, 3, 4]
-d = {'int_value':3, 'bool_value':False, 'str_value':'hello'}
-
-print(len(l)) # 
-print(len(d))
-```
-
-## 1.3 Functions, Methods, and Libraries
-
-- Calling Functions
-- R and Python functions work the same
-- Python: Functions and Methods
-
-### Methods vs Functions
-
-- python is an object-oriented programming language:
-  - Attributes
-  - Methods
-- Methods are functions that an object can call on itself
-- Functions are called on an object
-
-```{python}
-l = [0, 1, 2, 3, 4]
-len(l)   # call a function
-```
-
-But not this:
-
-```
-l.len()  # not a method
-```
-e.g. methods are functions that an object calls, whereas you pass objects into functions.
-
-i.e. we pass `l` a list to the function `len()`, rather than calling the method `len()` on `l` using the `.`
-
-### periods
-
-Periods, `.`, have very specific meanings and uses
-
-You can't use a `.` in a variable or function name.
-
-Uses:
-
-Append a list: Call the append method on the list `l` using the dot notation. So your not passing `l` to the `append()` function, rather you're calling the `append()` method on list `l`.
-
-```{python}
-l = [1, "2", True]
-l.append('appended value')
-print(l)
-```
-
-Update a dictionary:
-
-```{python}
-d = {'int_value':3, 'bool_value':False, 'str_value':'hello'}
-
-d.update({'str_value':'new_value', 'new_key':'new_value'})
-
-print(d)
-```
-
-Methods are special functions that belong to specific objects. e.g. if you try calling append on a dictionary object, you'll get an error because the method append is not defined for a dictionary but it is defined for a list. 
-
-### Libraries
-
-Arrays and data frame are not in Python by default. They come from numby (array and matrix) and pandas (dataframe)
-
-- Libraries provide more functionality
-- Arrays and dataframes are not built into Python
-- Arrays and matricies come from numpy
-- Dataframes come from pandas
-
-use import to load the library, but use an alias with the as _keyword_.
-
-```{python eval = TRUE}
-import numpy
-# arr = numpy.loadtxt('my_file.csv', delimiter=',')
-
-import numpy as np
-# arr = np.loadtxt('my_file.csv', delimiter=',')
-```
-
-```{python eval = TRUE}
+# Import an entire library and give it an alias
 import pandas as pd
+import numpy as np
+import seaborn as sns
+import statsmodels.api as sm
 
-# df = pd.read_csv('my_file.csv')
-# df.head()
+# Import only specific functions from a library 
+from scipy import stats
+from scipy.special import factorial
+from statsmodels.formula.api import ols
+
 ```
 
-## Extra
+## load dataset
 
-Find out where your packages are. In python execute:
-
-```{python eval = TRUE}
-import pandas
-import os
-path = os.path.dirname(pandas.__file__)
-print(path)
+```{python echo = FALSE}
+plant_growth = pd.read_csv('data/plant_growth.csv')
 ```
 
+```{python eval = FALSE}
+plant_growth = pd.read_csv('data/Plant Growth.txt', delimiter="\t")
+```
+
+## Examine the data 
 
 ```{python}
-import sys
-print(sys.version)
-print(sys.executable)
+# summaries
+plant_growth.describe()
+plant_growth['group'].value_counts()
+
+# explore first dataset rows
+plant_growth.head()
+
 ```
 
-```{r}
-print(system("which python"))
+## Descriptive statistics
+
+```{python}
+# count group members
+plant_growth['group'].value_counts()
+
+# get average weight
+np.mean(plant_growth['weight'])
+
 ```
 
+
+
+## summary statistics
+
+```{python}
+plant_growth.groupby(['group']).describe()
+df1 = plant_growth.groupby(['group']).mean()
+df2 = plant_growth.groupby(['group']).std()
+final_df = pd.concat([df1, df2], axis=1)
+
+```
+
+## Plot
+
+Visualize weight per group
+
+```{python eval = FALSE}
+sns.boxplot(x='group', y='weight', data=plant_growth)
+```
+
+```{python, echo = FALSE}
+print(sns.boxplot(x='group', y='weight', data=plant_growth))
+```
+
+## Inferential Statistics
+
+### T-test
+
+```{python}
+
+# fit a linear model
+# specify model
+model = ols("weight ~ group", plant_growth)
+
+# fit model
+results = model.fit()
+
+# explore model results
+results.summary()
+
+# extract coefficients
+results.params.Intercept
+results.params["group[T.trt1]"]
+results.params["group[T.trt2]"]
+
+```
+
+### ANOVA
+
+```{python}
+
+# ANOVA
+# compute anova
+aov_table = sm.stats.anova_lm(results, typ=2)
+
+# explore anova results
+aov_table
+
+```
+
+```{python echo = FALSE}
+print(aov_table)
+```
+
+
+
+### Exercises
+
+```{exercise}
+In the data folder you'll find another file called "Chick Weights.txt". 
+
+Here you'll find the results from an experiment in which newly hatched chicks were randomly allocated into six groups. Each group was given a different feed supplement. After six weeks, their weights in grams were measured.
+
+Using the commands we've learned so far complete the following tasks:
+
+- Calculate the mean and standard deviation for each group.
+- Calculate the number of chicks in each group.
+- Calculate a within-group z-score.
+- Produce a stripchart showing each chick as an individual data point
+- Calculate a 1-way ANOVA.
+- Calculate Tukey's post-hoc test (i.e. p-values for _all_ pair-wise t-tests)
+
+```
+
+```{python echo = FALSE, eval = FALSE}
+sns.stripplot(x='group', y='weight', data=plant_growth, jitter=0.2)
+```
+
+The results from the posthoc test will be as follows
+
+```{python, echo = FALSE}
+# t-test
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+print(pairwise_tukeyhsd(plant_growth['weight'], plant_growth['group']))
+```
 

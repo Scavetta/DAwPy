@@ -10,14 +10,6 @@ link-citations: yes
 description: "This is the reference book to accompany the Data Analysis with Python Workshop."
 ---
 
-# Introductions
-
-## Set up your software:
-
-Before running the commands in this book you should have the following software locally installed:
-
-- Python from [Anaconda](https://www.anaconda.com/download)
-- Start the Anaconda Navigator and open up [Jupyter Lab](https://jupyterlab.readthedocs.io/en/stable/)
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
@@ -50,3 +42,12 @@ Sys.setenv(PATH = paste("/anaconda3/bin", Sys.getenv("PATH"), sep=":"))
 }
 
 </style>
+
+# Getting Started with Python
+
+Before running the commands in this book you should have the following software locally installed:
+
+- Python from [Anaconda](https://www.anaconda.com/download)
+- Start the Anaconda Navigator and open up [Jupyter Lab](https://jupyterlab.readthedocs.io/en/stable/)
+- The workshop data repository can be found [here](https://github.com/Scavetta/DAwPy). Please download and unzip the file.
+

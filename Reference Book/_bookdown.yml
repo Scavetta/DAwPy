@@ -1,5 +1,5 @@
-book_filename: "Python Documentation"
+book_filename: "Python-Documentation"
 delete_merged_file: true
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Day "

@@ -1,0 +1,311 @@
+# Ch 3: Selecting Data in Pandas
+
+## 3.1.1 Data frames - 2D
+
+You can pass a dictionary to a `pd.DataFrame()` function. Index specifies the row names.
+
+<div class="column-left">
+
+```{r}
+
+df = data.frame(A = 1:3,
+                B = 4:6,
+                C = 7:9,
+                row.names = c("x", "y", "z"))
+```
+
+</div>
+
+<div class="column-right">
+
+```{python}
+import pandas as pd
+df = pd.DataFrame({
+            'A': [1, 2, 3],
+            'B': [4, 5, 6], 
+            'C': [7, 8, 9]}, 
+            index = ['x', 'y', 'z'])
+
+print(df)
+```
+
+</div>
+
+Select columns:
+
+```{python}
+df['A']
+
+df.A
+
+df[['A', 'B']]
+```
+
+
+Subset rows by index position (iloc)
+
+```{python}
+df
+
+df.iloc[0] # First row
+
+df.iloc[[0, 1]] # a list of rows, the first two rows
+
+```
+
+```{python}
+
+df.iloc[0, :] # all columns, : after the comma
+
+df.iloc[[0, 1], :]
+
+```
+
+Subsetting rows by label (loc)
+
+```{python}
+df.loc['x'] # The xth row
+
+df.loc[['x', 'y']] # The xth and yth row
+```
+
+Both rows and columns
+
+```{python}
+df.loc['x', 'A']
+df.loc[['x', 'y'], ['A', 'B']]
+```
+
+Conditional subsetting
+
+```{python}
+df[df.A == 3]
+
+df[(df.A == 3) | (df.B == 4)]
+```
+
+
+## 3.1.2 Attributes
+
+Shape is an attribute, so no `()`:
+
+```{python}
+df.shape
+```
+
+NOT a functon
+
+```{python eval = FALSE}
+df.shape()
+```
+
+
+## 3.2.1 Data Types
+
+type returns the type of an object. Data frames have more info.
+
+<div class="column-left">
+
+```{r}
+str(df)
+```
+
+</div>
+
+<div class="column-right">
+
+```{python}
+df.info()
+```
+
+
+</div>
+
+
+
+### 3.2.2 Change data types:
+
+<div class="column-left">
+
+```{r}
+df$A <- as.character(df$A)
+str(df)
+```
+
+</div>
+
+<div class="column-right">
+
+```{python}
+df['A'] = df['A'].astype(str)
+df.info()
+```
+
+
+</div>
+
+Type `object` means `string`. Access built-in string methods with str accessor
+
+
+### 3.2.3 Accessors
+
+#### 3.2.3.1 String Accessor
+
+e.g. strip removed leading and trailing whitespece
+
+```{python}
+df = pd.DataFrame({'name': ['Daniel  ','  Eric', '  Julia  ']})
+df['name_strip'] = df['name'].str.strip()
+df
+```
+
+#### 3.2.3.1 Categorical Accessor
+
+Like factors in R
+
+```{python}
+df = pd.DataFrame({'name': ['Daniel','Eric', 'Julia'],
+                   'gender':['Male', 'Male', 'Female']})
+
+df['gender_cat'] = df['gender'].astype('category') 
+```
+
+See the categories (levels in R) by calling the `cat` accessor and the `categories` attribute on the column. Use the `codes` attribute to get the codes.
+
+```{python}
+df['gender_cat'].cat.categories
+df.gender_cat.cat.codes
+```
+
+#### 3.2.3.3 Date Accessor
+
+Dates: use the `to_datetime()` function
+
+```{python}
+df = pd.DataFrame({'name': ['Rosaline Franklin', 'William Gosset'], 
+                   'born': ['1920-07-25', '1876-06-13']})
+
+df['born_dt'] = pd.to_datetime(df['born'])
+```
+
+Similar to strings and categorical values, you can access date components with the `dt` accessor
+
+
+```{python}
+df['born_dt'].dt.day
+df['born_dt'].dt.month
+df['born_dt'].dt.year
+```
+
+## 3.3 Advanced Pandas
+
+### 3.3.1 Missing data
+
+- `NaN` missing values from from numpy
+- `np.NaN`, `np.NAN`, `np.nan` are all the same as the NA R value
+- check missing with `pd.isnull`
+- Check non-missing with `pd.notnull`
+- `pd.isnull` is an alias for `pd.isna`
+
+
+```{python}
+df = pd.DataFrame({
+            'name': ["John Smith", "Jane Doe", "Mary Johnson"],
+            'treatment_a': [None, 16, 3], 
+            'treatment_b': [2, 11, 1]})
+print(df)
+
+```
+
+How to replace the `NaN` with the mean of the row?
+
+```{python}
+a_mean = df['treatment_a'].mean()
+print(a_mean)
+```
+
+use the `fillna` method:
+
+```{python}
+df['a_fill'] = df['treatment_a'].fillna(a_mean)
+print(df)
+```
+
+
+### 3.3.2 Applying custom functions
+
+Use all the following:
+- Built-in functions
+- Custom functions
+
+Use: `apply` method and pass in an axis
+
+```{r}
+df <- data.frame(a = 1:3,
+                 b = 4:6)
+
+apply(df, 2, mean)
+apply(df, 1, mean)
+```
+
+
+```{python}
+import numpy as np
+df = pd.DataFrame({'A': [1, 2, 3],
+                   'B': [4, 5, 6]})
+
+df.apply(np.mean, axis=0) # Column-wise
+df.apply(np.mean, axis=1) # Row-wise
+```
+
+### 3.3.4 Tidy data
+
+Reshaping and tidying our data (Tidy Data Paper)[http://vita.had.co.nz/papers/tidy-data.pdf]
+
+- Each row is an observation
+- Each column is a variable
+- Each type of observational unit forms a table
+
+Tidy Melt
+
+
+```{python}
+df = pd.DataFrame({
+            'name': ["John Smith", "Jane Doe", "Mary Johnson"],
+            'treatment_a': [None, 16, 3], 
+            'treatment_b': [2, 11, 1]})
+print(df)
+df_melt = pd.melt(df, id_vars='name')
+print(df_melt)
+```
+
+Tidy pivot_table
+
+```{python}
+df_melt_pivot = pd.pivot_table(df_melt,
+                               index='name',
+                               columns='variable',
+                               values='value')
+                               
+print(df_melt_pivot)
+```
+
+This results in a hierarchial index, so to get a regular flat data frame, call
+
+```{python}
+df_melt_pivot.reset_index()
+print(df_melt_pivot)
+```
+
+### 3.3.5 groupby operations
+
+- groupby: split-apply-combine
+  - _split_ data into separate partitions
+  - _apply_ a function on each partition
+  - _combine_ the results
+  
+```{python}
+print(df_melt)
+df_melt.groupby('name')['value'].mean()
+
+```

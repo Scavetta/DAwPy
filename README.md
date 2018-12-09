@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Data Analysis with Python Workshop
 
 ## Workshop structure
@@ -72,3 +73,7 @@ jupyter lab
 
 * [pandas cheat sheet](https://github.com/pandas-dev/pandas/blob/master/doc/cheatsheet/Pandas_Cheat_Sheet.pdf)
 * [python cheat sheet](https://www.pythonsheets.com/notes/python-basic.html)
+=======
+# DAwPy
+Data for Data Analysis with Python Workshop
+>>>>>>> 1c0861fae85dbe03e474eba73b26e17c4dffb7d8

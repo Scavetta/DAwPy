@@ -749,3 +749,14 @@ results.summary()
 
 # Convert weight from pounds to kg
 mtcars['wt_kg'] = (mtcars['wt']*1000)*0.4536
+
+
+# If statements in brief:
+# Each conditional should return a single True/False
+xx = 2
+if (xx > 1):
+    print("too large")
+elif (xx < -5):
+    print("too small")
+else: 
+    print("yesssss!")

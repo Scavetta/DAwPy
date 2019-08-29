@@ -103,14 +103,14 @@ chick.groupby(['feed']).describe()
 chick['feed'].value_counts()
 
 # Within-group z-scores
-chick.groupby(['feed'])['weight'].transform(lambda x: zscore(x, ddof = 1))
+chick.groupby(['feed'])['weight'].transform(lambda x: stats.zscore(x, ddof = 1))
 chick.groupby(['feed'])['weight'].agg('mean')
 # Transform = same number of output as input (z-score, log)
 # Aggregrations = 1 output for any number of input (mean, sd)
 
-# zscore([3,5,6,8,4,3,], ddof = 1)
-# chick.groupby('feed').zscore()
-# zscore(chick.groupby(['feed'])['weight'], ddof = 1)
+stats.zscore([3,5,6,8,4,3,], ddof = 1)
+# chick.groupby('feed').stats.zscore()
+# stats.zscore(chick.groupby(['feed'])['weight'], ddof = 1)
 # help(zscore)
 
 # Plot
@@ -336,12 +336,12 @@ confInt(heights, 2.26)
 # Sample size on a t-distbutions
 # i.e. df (degrees of freedom) = n-1
 # First, get the t distribution
-from scipy.stats import t
+# from scipy.stats import t
 
 def confInt(x):
     """calculate the conf int"""
 
-    correct = t.ppf(0.975,  len(x)-1 )
+    correct = stats.t.ppf(0.975,  len(x)-1 )
 
     lower = np.mean(x) - correct * np.std(x)/np.sqrt(len(x))
     upper = np.mean(x) + correct * np.std(x)/np.sqrt(len(x))
@@ -363,7 +363,7 @@ lambda x, y: x ** y
 # e.g. we saw it already in the context of a DataFrame
 # the \ breaks up a long command onto the next line
 chick.groupby(['feed'])['weight']. \
-    transform(lambda x: zscore(x, ddof = 1))
+   transform(lambda x: stats.zscore(x, ddof = 1))
 
 # or use the map()
 # heights ** 3 # lists are not iterable
@@ -372,7 +372,7 @@ cubed = map(lambda x: x ** 3, heights)
 # Which we can convert to a list 
 list(cubed)
 
-cubed_2 = map(lambda x, y: x ** y, {heights, 3})
+# cubed_2 = map(lambda x, y: x ** y, {heights, 3})
 # This results in a map object
 # Which we can convert to a list 
 # list(cubed_2)
@@ -390,7 +390,7 @@ list(filter(lambda x: x > 175, heights))
 def confInt(x):
     """calculate the conf int"""
 
-    correct = t.ppf(0.975,  len(x)-1)
+    correct = stats.t.ppf(0.975,  len(x)-1)
 
     lower = np.mean(x) - correct * np.std(x)/np.sqrt(len(x))
     upper = np.mean(x) + correct * np.std(x)/np.sqrt(len(x))
@@ -414,7 +414,7 @@ np.mean(heights) # a function in the np module
 len(heights) # a function
 
 # len is not a method
-heights.len()
+# heights.len()
 # 'list' object (heights) has no attribute 'len'
 
 # Function takes an object as an argument
@@ -477,16 +477,16 @@ heights.count(194)
 
 # These are methods we already saw,
 # but the are NOT methods for lists!
-heights.value_counts()
-heights.mean() # called as a builtin method
+# heights.value_counts()
+# heights.mean() # called as a builtin method
 
 # index()
 heights
 heights.index(194)
 
 # Revisit for iterables
-# range(3)
-# list(range(3)) # 0,1,2
+range(3)
+list(range(3)) # 0,1,2
 
 heights.extend(range(3))
 heights
